@@ -1,18 +1,15 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-btn color="success" @click="login">Log In</v-btn>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import { createNamespacedHelpers } from 'vuex';
 
+const { mapActions } = createNamespacedHelpers('auth');
 export default {
-  name: 'home',
-  components: {
-    HelloWorld,
+  components: {},
+  methods: {
+    ...mapActions(['login']),
   },
 };
 </script>

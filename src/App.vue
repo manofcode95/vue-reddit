@@ -9,24 +9,24 @@
 </template>
 
 <script>
-import Toolbar from '@/components/Toolbar.vue';
-import Drawer from '@/components/Drawer.vue';
+import Toolbar from "@/components/Toolbar.vue";
+import Drawer from "@/components/Drawer.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   data() {
     return {
-      drawer: false,
+      drawer: false
     };
   },
   methods: {
     toggleDrawer() {
       this.drawer = !this.drawer;
-    },
+    }
   },
   components: {
     Toolbar,
-    Drawer,
-  },
+    Drawer
+  }
 };
 </script>

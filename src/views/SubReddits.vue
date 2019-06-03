@@ -1,26 +1,37 @@
 <template>
-  <div>
-    <h1>subreddits</h1>
-    <ul v-for="sub in subreddits" :key="sub.key">
-      <li>{{sub}}</li>
-    </ul>
-  </div>
+  <v-container>
+    <h1>General</h1>
+
+    <v-list v-if="subreddits.length>0" class="success white--text">
+      <v-list-tile
+        v-for="sub in subreddits"
+        :key="sub.id"
+        avatar
+        :to="{name:'subreddit', params:{subreddit : sub.name}}"
+      >
+        <v-list-tile-content>
+          <v-list-tile-title v-text="sub.name" class="text-capitalize"></v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+    </v-list>
+  </v-container>
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapActions } from 'vuex';
+
 export default {
   computed: {
     subreddits() {
-      return this.$store.getters["subreddits/getSubs"];
-    }
+      return this.$store.getters['subreddits/getSubs'];
+    },
   },
   methods: {
-    ...mapActions("subreddits", ["init"])
+    ...mapActions('subreddits', ['initSubreddits']),
   },
   mounted() {
-    this.init();
-  }
+    this.initSubreddits();
+  },
 };
 </script>
 <style>

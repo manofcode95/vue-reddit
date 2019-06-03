@@ -1,42 +1,42 @@
-import firebase, { db } from "@/firebase/fireinit";
+import firebase, { db } from '@/firebase/fireinit';
 
 export default {
   namespaced: true,
   state: {
     user: null,
-    isLoggedIn: false
+    isLoggedIn: false,
   },
   actions: {
-    async login({ commit }) {
+    async login({ }) {
       const provider = new firebase.auth.GoogleAuthProvider();
       const data = await firebase
         .auth()
         .signInWithPopup(provider)
-        .catch(err => {
+        .catch((err) => {
           console.log(err.message);
         });
     },
-    async logout({ commit }) {
+    async logout({ }) {
       firebase
         .auth()
         .signOut()
-        .then(function() {
+        .then(() => {
           // Sign-out successful.
         })
-        .catch(function(error) {
-          // An error happened.
+        .catch((err) => {
+          console.log(err.message);
         });
-    }
+    },
   },
   mutations: {
     setUser(state, user) {
-      state.isLoggedIn = user ? true : false;
+      state.isLoggedIn = !!user;
       state.user = user;
-    }
+    },
   },
   getters: {
     getUser(state) {
       return state.user;
-    }
-  }
+    },
+  },
 };

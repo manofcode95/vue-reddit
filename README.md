@@ -44,3 +44,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
    this.\$store.dispatch("subreddits/init");
    mapActions("subreddits", ["init"])
 6. To get data from computed, the computed has to return data
+7. Check author of the post is the auth:
+   match /posts/{post_id} {
+   allow write: if request.auth.uid == request.resource.data.user_id;
+   }
+   https://angularfirebase.com/lessons/firestore-security-rules-guide/
+   https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA
